@@ -9,6 +9,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const moment = require('moment');
 const cors = require('cors');
+require('dotenv').config({ path: '../.env' });
 
 const APP_PORT = process.env.APP_PORT || 8000;
 const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID;
@@ -145,10 +146,10 @@ app.post('/api/create_user_token', function (request, response, next) {
     .then(async function () {
 
       const request = {
-         // Typically this will be a user ID number from your application. 
+         // Typically this will be a user ID number from your application.
         client_user_id: 'user_' + uuidv4()
       }
-      
+
       if (PLAID_PRODUCTS.some(product => product.startsWith("cra_"))) {
         request.consumer_report_user_identity = {
           first_name: 'Harry',
