@@ -111,6 +111,7 @@ const App = () => {
         return;
       }
 
+
       if (isUserTokenFlow) {
         await generateUserToken();
       }
